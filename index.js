@@ -3,8 +3,9 @@ const express = require("express");
 const axios = require("axios");
 const md5 = require("md5");
 const uid2 = require("uid2");
-const apiKey = "086bfb5aedabc54ca6f8e87b2d96e917";
-const privateKey = "8b5f0543135e28648f209bbe9a456954cf3ece84";
+require("dotenv").config();
+const apiKey = process.env.PUBLIC_KEY;
+const privateKey = process.env.PRIVATE_KEY;
 
 const app = express();
 
@@ -63,6 +64,6 @@ app.all("*", (req, res) => {
   res.status(404).json({ message: error.message });
 });
 
-app.listen(3000, () => {
-  console.log("Server started");
+app.listen(process.env.PORT, () => {
+  console.log(`Server Started on port ${process.env.PORT}`);
 });
