@@ -12,7 +12,7 @@ app.get("/characters", async (req, res) => {
   try {
     const ts = uid2(8);
     const hash = md5(ts + privateKey + apiKey);
-    //console.log('avant la requetet');//
+    console.log("coco");
     const response = await axios.get(
       `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${apiKey}&hash=${hash}`
     );
@@ -28,11 +28,11 @@ app.get("/characters/:id", async (req, res) => {
     //const id = 1011334;
     const ts = uid2(8);
     console.log(ts);
-    const hash = MD5(ts + privateKey + apiKey);
+    const hash = md5(ts + privateKey + apiKey);
     console.log("before");
 
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/characters/:${id}?ts=${ts}&apikey=${apiKey}&hash=${hash}`
+      `http://gateway.marvel.com/v1/public/characters/${id}?ts=${ts}&apikey=${apiKey}&hash=${hash}`
     );
     console.log(response.data);
 
@@ -46,11 +46,12 @@ app.get("/comics", async (req, res) => {
   try {
     const ts = uid2(8);
 
-    const hash = MD5(ts + privateKey + apiKey);
+    const hash = md5(ts + privateKey + apiKey);
 
     const response = await axios.get(
       `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${apiKey}&hash=${hash}`
     );
+    //console.log(response.data);
 
     return res.json(response.data);
   } catch (error) {
