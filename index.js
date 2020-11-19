@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-app.use(cors());
+
 const axios = require("axios");
 const md5 = require("md5");
 const uid2 = require("uid2");
@@ -9,6 +9,8 @@ const apiKey = process.env.PUBLIC_KEY;
 const privateKey = process.env.PRIVATE_KEY;
 
 const app = express();
+
+app.use(cors());
 
 app.get("/characters", async (req, res) => {
   try {
