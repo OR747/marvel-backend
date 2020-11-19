@@ -1,5 +1,6 @@
 const express = require("express");
-
+const cors = require("cors");
+app.use(cors());
 const axios = require("axios");
 const md5 = require("md5");
 const uid2 = require("uid2");
