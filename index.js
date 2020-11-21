@@ -21,7 +21,7 @@ app.get("/characters", async (req, res) => {
     const hash = md5(ts + privateKey + apiKey);
     //console.log("coco");
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/characters?limit=${limit}$total=${total}&offset=${offset}&ts=${ts}&apikey=${apiKey}&hash=${hash}`
+      `http://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${apiKey}&hash=${hash}`
     );
     //console.log("requete");
     return res.json(response.data);
