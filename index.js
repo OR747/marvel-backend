@@ -14,13 +14,14 @@ app.use(cors());
 
 app.get("/characters", async (req, res) => {
   try {
+    let limit = 100;
     const ts = uid2(8);
     const hash = md5(ts + privateKey + apiKey);
-    console.log("coco");
+    //console.log("coco");
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${apiKey}&hash=${hash}`
+      `http://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${apiKey}&hash=${hash}`
     );
-    console.log("requete");
+    //console.log("requete");
     return res.json(response.data);
   } catch (error) {
     return res.status(400).json(error.message);
@@ -33,7 +34,7 @@ app.get("/characters/:id", async (req, res) => {
     const ts = uid2(8);
     console.log(ts);
     const hash = md5(ts + privateKey + apiKey);
-    console.log("before");
+    //console.log("before");
 
     const response = await axios.get(
       `http://gateway.marvel.com/v1/public/characters/${id}?ts=${ts}&apikey=${apiKey}&hash=${hash}`
