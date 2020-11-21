@@ -16,11 +16,12 @@ app.get("/characters", async (req, res) => {
   try {
     let limit = 100;
     let offset = "";
+    let total = "";
     const ts = uid2(8);
     const hash = md5(ts + privateKey + apiKey);
     //console.log("coco");
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/characters?offset=${offset}&limit=${limit}&ts=${ts}&apikey=${apiKey}&hash=${hash}`
+      `http://gateway.marvel.com/v1/public/characters?limit=${limit}$total=${total}&offset=${offset}&ts=${ts}&apikey=${apiKey}&hash=${hash}`
     );
     //console.log("requete");
     return res.json(response.data);
