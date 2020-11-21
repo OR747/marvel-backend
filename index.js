@@ -14,7 +14,7 @@ app.use(cors());
 
 app.get("/characters", async (req, res) => {
   try {
-    let limit = 100;
+    let limit = 200;
     const ts = uid2(8);
     const hash = md5(ts + privateKey + apiKey);
     //console.log("coco");
