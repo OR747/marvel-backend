@@ -14,13 +14,14 @@ app.use(cors());
 
 app.get("/characters", async (req, res) => {
   try {
-    let limit = 100;
-
+    const page = 15.8;
+    const limit = 100;
+    const offset = limit * page - 100;
     const ts = uid2(8);
     const hash = md5(ts + privateKey + apiKey);
     //console.log("coco");
     const response = await axios.get(
-      `http://gateway.marvel.com/v1/public/characters?&limit=${limit}&ts=${ts}&apikey=${apiKey}&hash=${hash}`
+      `http://gateway.marvel.com/v1/public/characters?orderBy=name&limit=${limit}&offset=${offset}&ts=${ts}&apikey=${apiKey}&hash=${hash}`
     );
     //console.log("requete");
     return res.json(response.data);
